@@ -1,4 +1,8 @@
+import 'package:demo_provider/change_notifier_provider.dart';
+import 'package:demo_provider/feature_provider.dart';
 import 'package:flutter/material.dart';
+
+import 'basic_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Quản lý nhà nước'),
     );
   }
 }
@@ -104,11 +108,34 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => BasicProviderScreen()));
+              },
+              child: Text("Basic Provider"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ChangeNotifierScreen()));
+              },
+              child: Text("Change Notifier Provider"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => FeatureProviderScreen()));
+              },
+              child: Text("Feature Provider"),
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          _incrementCounter();
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

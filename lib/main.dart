@@ -3,6 +3,9 @@ import 'package:demo_provider/feature_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'basic_provider.dart';
+import 'future_builder.dart';
+import 'stream_builder.dart';
+import 'stream_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -128,6 +131,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (_) => FeatureProviderScreen()));
               },
               child: Text("Feature Provider"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => FeatureBuilderScreen()));
+              },
+              child: Text("Feature Builder"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => StreamProviderScreen()));
+              },
+              child: Text("Stream Provider"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => StreamBuilderScreen()));
+              },
+              child: Text("Stream Builder"),
             )
           ],
         ),

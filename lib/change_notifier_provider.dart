@@ -40,7 +40,7 @@ class ContentCalculation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CalculationModel model = Provider.of<CalculationModel>(context);
+    print("ContentCalculation build");
     return Column(
       children: [
         TextField(
@@ -59,24 +59,37 @@ class ContentCalculation extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        Text(
-          "Kết quả: ${model._sum}",
-          style: TextStyle(fontSize: 25),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        ButtonTheme(
-          minWidth: 200,
-          child: RaisedButton(
-            onPressed: () {
-              int a = int.parse(_textEditingA.text.toString());
-              int b = int.parse(_textEditingB.text.toString());
-              context.read<CalculationModel>().sumAB(a, b);
-              //model.sumAB(a, b);
-            },
-            child: Text("Tính AB"),
-            textColor: Colors.white,
+        Consumer<CalculationModel>(
+          builder: (context, model, child) {
+            return Column(
+              children: [
+                Text(
+                  "Kết quả: ${model._sum}",
+                  style: TextStyle(fontSize: 25),
+                ),
+                child
+              ],
+            );
+          },
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              ButtonTheme(
+                minWidth: 200,
+                child: RaisedButton(
+                  onPressed: () {
+                    int a = int.parse(_textEditingA.text.toString());
+                    int b = int.parse(_textEditingB.text.toString());
+                    context.read<CalculationModel>().sumAB(a, b);
+                    //model.sumAB(a, b);
+                  },
+                  child: Text("Tính AB"),
+                  textColor: Colors.white,
+                ),
+              )
+            ],
           ),
         )
       ],

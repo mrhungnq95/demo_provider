@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BasicProviderScreen extends StatefulWidget {
-  @override
-  _BasicProviderScreenState createState() => _BasicProviderScreenState();
-}
-
 class Info {
   String _welcomeTitle = "Welcome FuokFuok!";
   String _description =
@@ -18,6 +13,11 @@ class Info {
   String get getWelcomeTitle => _welcomeTitle;
 
   set setWelcomeTitle(String welcomeTitle) => this._welcomeTitle = welcomeTitle;
+}
+
+class BasicProviderScreen extends StatefulWidget {
+  @override
+  _BasicProviderScreenState createState() => _BasicProviderScreenState();
 }
 
 class _BasicProviderScreenState extends State<BasicProviderScreen> {

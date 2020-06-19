@@ -1,5 +1,6 @@
 import 'package:demo_provider/change_notifier_provider.dart';
 import 'package:demo_provider/feature_provider.dart';
+import 'package:demo_provider/proxy_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'basic_provider.dart';
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("Root Scaffold build");
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -152,6 +154,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: (_) => StreamBuilderScreen()));
               },
               child: Text("Stream Builder"),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ProxyProviderScreen()));
+              },
+              child: Text("Proxy Provider"),
             )
           ],
         ),

@@ -17,7 +17,7 @@ class ServiceResponse<T> {
       this.ad});
 
   factory ServiceResponse.fromJson(
-      Map<String, dynamic> json, Function fromJson) {
+      Map<String, dynamic> json, Function fromJsonGeneric) {
     final items = json['data'].cast<Map<String, dynamic>>();
     return ServiceResponse<T>(
         page: json["page"],
@@ -25,7 +25,8 @@ class ServiceResponse<T> {
         total: json["total"],
         totalPages: json["totalPages"],
         ad: json['ad'] != null ? new Ad.fromJson(json['ad']) : null,
-        data: new List<T>.from(items.map((itemsJson) => fromJson(itemsJson))));
+        data: new List<T>.from(
+            items.map((itemsJson) => fromJsonGeneric(itemsJson))));
   }
 
   Map<String, dynamic> toJson(Function(T object) toJsonGeneric) {

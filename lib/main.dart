@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:demo_provider/change_notifier_provider.dart';
 import 'package:demo_provider/feature_provider.dart';
 import 'package:demo_provider/proxy_provider.dart';
 import 'package:flutter/material.dart';
 import 'basic_provider.dart';
 import 'future_builder.dart';
+import 'models/data.dart';
+import 'models/service_response.dart';
 import 'service/membership/membership_service_client.dart';
 import 'stream_builder.dart';
 import 'stream_provider.dart';
@@ -76,8 +80,16 @@ class _MyHomePageState extends State<MyHomePage> {
     print("Root Scaffold build");
 
     MembershipServiceClient membershipService = MembershipServiceClient.shared;
-    membershipService.fetchResourceAsync().then((value) =>
-        print("fetchResourceAsync success: " + value.page.toString()));
+    membershipService.fetchResourceAsync().then((value) {
+      var json = jsonEncode(value.toJson((object) => object.toJson()));
+
+      print("fetchResourceAsync success: " + json);
+
+      var reFromJson = ServiceResponse<Data>.fromJson(
+          jsonDecode(json.toString()), Data.fromJsonGeneric);
+
+      print("fetchResourceAsync success: " + json.toString());
+    });
 
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.

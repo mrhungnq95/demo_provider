@@ -28,18 +28,18 @@ class ServiceResponse<T> {
         data: new List<T>.from(items.map((itemsJson) => fromJson(itemsJson))));
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['page'] = this.page;
-  //   data['per_page'] = this.perPage;
-  //   data['total'] = this.total;
-  //   data['total_pages'] = this.totalPages;
-  //   if (this.data != null) {
-  //     data['data'] = this.data.map((v) => v.toJson()).toList();
-  //   }
-  //   if (this.ad != null) {
-  //     data['ad'] = this.ad.toJson();
-  //   }
-  //   return data;
-  // }
+  Map<String, dynamic> toJson(Function(T object) toJsonGeneric) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['page'] = this.page;
+    data['per_page'] = this.perPage;
+    data['total'] = this.total;
+    data['total_pages'] = this.totalPages;
+    if (this.data != null) {
+      data['data'] = this.data.map((v) => toJsonGeneric(v)).toList();
+    }
+    if (this.ad != null) {
+      data['ad'] = this.ad.toJson();
+    }
+    return data;
+  }
 }

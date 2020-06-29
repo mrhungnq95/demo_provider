@@ -1,5 +1,4 @@
 import 'package:demo_provider/models/data.dart';
-import 'package:demo_provider/models/resource.dart';
 import 'package:demo_provider/models/service_response.dart';
 import 'dart:convert';
 import 'membership_service.dart';

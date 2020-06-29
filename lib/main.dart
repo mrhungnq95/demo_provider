@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:demo_provider/change_notifier_provider.dart';
 import 'package:demo_provider/feature_provider.dart';
 import 'package:demo_provider/proxy_provider.dart';
+import 'package:demo_provider/utils/misa_cache.dart';
 import 'package:flutter/material.dart';
 import 'basic_provider.dart';
 import 'future_builder.dart';
@@ -11,6 +12,7 @@ import 'models/service_response.dart';
 import 'service/membership/membership_service_client.dart';
 import 'stream_builder.dart';
 import 'stream_provider.dart';
+import 'utils/screen_util.dart';
 
 void main() {
   runApp(MyApp());

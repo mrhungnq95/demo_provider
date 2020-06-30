@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:demo_provider/change_notifier_provider.dart';
 import 'package:demo_provider/feature_provider.dart';
 import 'package:demo_provider/proxy_provider.dart';
-import 'package:demo_provider/utils/misa_cache.dart';
 import 'package:flutter/material.dart';
 import 'basic_provider.dart';
 import 'future_builder.dart';
@@ -12,7 +11,8 @@ import 'models/service_response.dart';
 import 'service/membership/membership_service_client.dart';
 import 'stream_builder.dart';
 import 'stream_provider.dart';
-import 'utils/screen_util.dart';
+import 'utils/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +41,28 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Quản lý nhà nước'),
+      localizationsDelegates: [
+        // THIS CLASS WILL BE ADDED LATER
+        // A class which loads the translations from JSON files
+        AppLocalizations.delegate,
+        // Built-in localization of basic text for Material widgets
+        GlobalMaterialLocalizations.delegate,
+        // Built-in localization for text direction LTR/RTL
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      // localeResolutionCallback: (locale, supportedLocales) {
+      //   // Check if the current device locale is supported
+      //   for (var supportedLocale in supportedLocales) {
+      //     if (supportedLocale.languageCode == locale.languageCode &&
+      //         supportedLocale.countryCode == locale.countryCode) {
+      //       return supportedLocale;
+      //     }
+      //   }
+      //   // If the locale of the device is not supported, use the first one
+      //   // from the list (English, in this case).
+      //   return supportedLocales.first;
+      // },
+      supportedLocales: AppLocalizations.localeSupport,
     );
   }
 }
@@ -126,7 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              AppLocalizations.of(context)
+                  .localize('three_string', params: [_counter]),
             ),
             Text(
               '$_counter',
